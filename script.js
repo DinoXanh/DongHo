@@ -1,6 +1,7 @@
 const timer = document.getElementById("timer");
+const skipBtn = document.getElementById("skipBtn");
 
-let timeLeft = 10 * 60; // 10 phút
+let timeLeft = 10 * 60;
 
 function updateTimer() {
     const minutes = Math.floor(timeLeft / 60);
@@ -27,6 +28,11 @@ function updateTimer() {
 updateTimer();
 
 const countdown = setInterval(updateTimer, 1000);
+
+skipBtn.addEventListener("click", () => {
+    timeLeft = 60;
+    timer.classList.add("warning");
+});
 
 window.addEventListener("beforeunload", () => {
     clearInterval(countdown);
