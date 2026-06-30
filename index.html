@@ -9,8 +9,29 @@
 <body>
 
 <div class="container">
-    <h1>Đồng Hồ Đếm Ngược</h1>
-    <div id="timer">10:00</div>
+    <div class="timer-box">
+        <h1>Đồng Hồ Đếm Ngược</h1>
+
+        <div id="timer">10:00</div>
+
+        <button id="skipBtn">
+            Skip đến 1 phút
+        </button>
+    </div>
+
+    <div class="explain-box">
+        <h2>Logic tư duy</h2>
+        <p>
+            Đồng hồ sử dụng <b>setInterval()</b> để cập nhật thời gian mỗi giây.
+            Khi thời gian bằng 0 hoặc người dùng rời khỏi trang,
+            chương trình gọi <b>clearInterval()</b> để dừng interval.
+        </p>
+
+        <p>
+            Việc giải phóng interval giúp tránh tạo nhiều timer chạy ngầm,
+            giảm tiêu tốn bộ nhớ và ngăn hiện tượng <b>memory leak</b>.
+        </p>
+    </div>
 </div>
 
 <script src="script.js"></script>
