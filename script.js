@@ -1,9 +1,10 @@
 const timer = document.getElementById("timer");
 const skipBtn = document.getElementById("skipBtn");
 
-let timeLeft = 10 * 60; // 10 phút
+let timeLeft = 10 * 60;
+let countdown;
 
-function updateTimer() {
+function displayTime() {
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
 
@@ -14,26 +15,32 @@ function updateTimer() {
 
     if (timeLeft <= 60) {
         timer.classList.add("warning");
+    } else {
+        timer.classList.remove("warning");
     }
-
-    if (timeLeft <= 0) {
-        clearInterval(countdown);
-        timer.textContent = "00:00";
-        alert("Hết thời gian!");
-        return;
-    }
-
-    timeLeft--;
 }
 
-updateTimer();
+function startTimer() {
+    countdown = setInterval(() => {
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            timer.textContent = "00:00";
+            alert("Hết thời gian!");
+            return;
+        }
 
-const countdown = setInterval(updateTimer, 1000);
+        timeLeft--;
+        displayTime();
+    }, 1000);
+}
+
+displayTime();
+startTimer();
 
 skipBtn.addEventListener("click", () => {
     if (timeLeft > 60) {
         timeLeft = 60;
-        updateTimer();
+        displayTime(); // cập nhật ngay lên 01:00
     }
 });
 
